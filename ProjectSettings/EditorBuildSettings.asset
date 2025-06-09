@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu_scene.unity
+    guid: 4ae696d2321f4624198c727ba690d427
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/CharacterSelection.unity
+    guid: 8eecf8ed13da28147a343d1964eea0de
+  - enabled: 1
+    path: Assets/Scenes/Boxing.unity
+    guid: 2def86705bf494046b0173adfe659bb2
   m_configObjects: {}

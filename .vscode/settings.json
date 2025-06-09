@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Boxing Game.sln"
+    "dotnet.defaultSolution": "Boxing_Game.sln"
 }
