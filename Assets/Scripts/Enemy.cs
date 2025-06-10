@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public RectTransform healthBar;
     public float minWidth = 0f;       // Prevent it from going negative
     private List<string> myList = new List<string> { "StomchHitTrigger", "RibHitTrigger", "HeadHitTrigger" };
+    public int enemyLevel;
 
     void Start()
     {
@@ -30,7 +31,7 @@ public class Enemy : MonoBehaviour
 
     void TakeDamge(float force, string triggerName)
     {
-        float newWidth = Mathf.Max(healthBar.sizeDelta.x - force, minWidth);
+        float newWidth = Mathf.Max(healthBar.sizeDelta.x - (force / enemyLevel), minWidth);
         healthBar.sizeDelta = new Vector2(newWidth, healthBar.sizeDelta.y);
         if (newWidth > 0)
         {
