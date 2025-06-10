@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
+// using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
     // public Image healthBar;
-    public Scrollbar healthBar;
     public Animator EnamyAnimation;
+    public RectTransform healthBar;
+    public float minWidth = 0f;       // Prevent it from going negative
 
-    public float helathAmount = 100f;
-    public bool isDead = false;
-    // Start is called before the first frame update
     void Start()
     {
         EnamyAnimation = GetComponent<Animator>();
@@ -21,51 +19,31 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isDead) return;
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            EnamyAnimation.SetTrigger("HitToBodyTrigger");
-            TakeDamge(20);
-
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            EnamyAnimation.SetTrigger("HeadHitTrigger");
-            TakeDamge(20);
-
-        }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            EnamyAnimation.SetTrigger("StomchHitTriggerr");
-            TakeDamge(20);
-
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            EnamyAnimation.SetTrigger("KickTrigger");
-            TakeDamge(20);
-
+            TakeDamge(Random.Range(5f, 20f));
         }
 
     }
 
-    void UpdateHealthBar()
-    {
-        if (healthBar != null)
-        {
-            healthBar.size = helathAmount / 100;
-        }
-    }
+
     void TakeDamge(float force)
     {
-        helathAmount = Mathf.Max(0, helathAmount - force);
-        if (helathAmount <= 0)
+        float newWidth = Mathf.Max(healthBar.sizeDelta.x - force, minWidth);
+        healthBar.sizeDelta = new Vector2(newWidth, healthBar.sizeDelta.y);
+        if (newWidth > 0)
         {
-            EnamyAnimation.SetTrigger("DeathTrigger");
-            isDead = true;
+            EnamyAnimation.SetTrigger("HeadHitTrigger");
 
         }
-        UpdateHealthBar();
+        else
+        {
+            EnamyAnimation.SetTrigger("DeathTrigger");
+            this.enabled = false;
+
+
+        }
+
     }
 
 
