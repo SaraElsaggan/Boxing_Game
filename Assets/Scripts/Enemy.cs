@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public Animator EnamyAnimation;
     public RectTransform healthBar;
     public float minWidth = 0f;       // Prevent it from going negative
+    private List<string> myList = new List<string> { "StomchHitTrigger", "RibHitTrigger", "HeadHitTrigger" };
 
     void Start()
     {
@@ -21,19 +22,19 @@ public class Enemy : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            TakeDamge(Random.Range(5f, 20f));
+            TakeDamge(Random.Range(5f, 20f), myList[Random.Range(0, myList.Count)]);
         }
 
     }
 
 
-    void TakeDamge(float force)
+    void TakeDamge(float force, string triggerName)
     {
         float newWidth = Mathf.Max(healthBar.sizeDelta.x - force, minWidth);
         healthBar.sizeDelta = new Vector2(newWidth, healthBar.sizeDelta.y);
         if (newWidth > 0)
         {
-            EnamyAnimation.SetTrigger("HeadHitTrigger");
+            EnamyAnimation.SetTrigger(triggerName);
 
         }
         else
