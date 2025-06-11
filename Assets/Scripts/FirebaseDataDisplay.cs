@@ -1,43 +1,62 @@
 using UnityEngine;
 using TMPro;
+using Firebase;
 using Firebase.Database;
 using Firebase.Extensions;
 
 public class FirebaseDataDisplay : MonoBehaviour
 {
     public TMP_Text dataText;
-
+    public float mass = 60f;
     private DatabaseReference dbRef;
 
     void Start()
-{
-    // Assign your Firebase DB URL
-    FirebaseDatabase database = FirebaseDatabase.GetInstance("https://mana-f7db9-default-rtdb.firebaseio.com/");
-    dbRef = database.RootReference;
+    {
+        // Initialize Firebase database
+        FirebaseDatabase database = FirebaseDatabase.GetInstance("https://mana-f7db9-default-rtdb.firebaseio.com/");
+        dbRef = database.RootReference;
 
-    database.GetReference("/")
-        .GetValueAsync().ContinueWithOnMainThread(task =>
+        // Subscribe to real-time updates
+        dbRef.ValueChanged += OnDataChanged;
+    }
+
+    private void OnDataChanged(object sender, ValueChangedEventArgs args)
+    {
+        if (args.DatabaseError != null)
         {
-            if (task.IsCompleted)
-            {
-                DataSnapshot snapshot = task.Result;
+            Debug.LogError("Firebase database error: " + args.DatabaseError.Message);
+            dataText.text = "Error loading data.";
+            return;
+        }
 
-                // Read values safely with null checks
-                bool detectedForce = bool.Parse(snapshot.Child("Detected_Force").Value.ToString());
-                string humidity = snapshot.Child("HUMIDITY").Value?.ToString() ?? "N/A";
-                string temp = snapshot.Child("TEMP").Value?.ToString() ?? "N/A";
+        DataSnapshot snapshot = args.Snapshot;
 
-                // Display all in one text box
-                dataText.text =
-                    $"Force Detected: {detectedForce}\n" +
-                    $"Humidity: {humidity}\n" +
-                    $"Temperature: {temp}";
-            }
-            else
-            {
-                dataText.text = "Failed to load data.";
-                Debug.LogError("Firebase read error: " + task.Exception);
-            }
-        });
-}
+        // Extract values
+        string pulse = snapshot.Child("Pulse").Value?.ToString() ?? "N/A";
+        string speedRaw = snapshot.Child("Speed").Value?.ToString() ?? "0";
+        string temp = snapshot.Child("TEMP").Value?.ToString() ?? "N/A";
+
+        // Parse speed and calculate force
+        float speedValue = 0f;
+        string[] speedParts = speedRaw.Split(' ');
+        float.TryParse(speedParts[0], out speedValue);
+
+        float force = speedValue * mass;
+
+        // Update UI text
+        dataText.text =
+            $"Pulse: {pulse}\n" +
+            $"Speed: {speedValue:F2} m/s²\n" +
+            $"Force: {force:F2} N\n" +
+            $"Temperature: {temp}";
+    }
+
+    void OnDestroy()
+    {
+        // Unsubscribe to prevent memory leaks
+        if (dbRef != null)
+        {
+            dbRef.ValueChanged -= OnDataChanged;
+        }
+    }
 }
