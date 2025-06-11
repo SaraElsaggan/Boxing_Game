@@ -16,6 +16,12 @@ public class Enemy : MonoBehaviour
     public AudioClip win; // Reference to the AudioSource component
     public AudioClip start; // Reference to the AudioSource component
     private AudioSource audioSource;
+    public FirebaseDataDisplay firebase;
+    private float damageCooldown = 1f; // 1 second cooldown
+    private float lastDamageTime = -1f;
+
+    public float thershold = 20f;
+
 
 
 
@@ -32,9 +38,16 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        // if (Input.GetKeyDown(KeyCode.Z))
+        if (firebase.Force >= thershold)
         {
-            TakeDamge(Random.Range(5f, 20f), myList[Random.Range(0, myList.Count)]);
+            if (Time.time - lastDamageTime >= damageCooldown)
+            {
+                Debug.Log("something");
+                TakeDamge(Random.Range(5f, 20f), myList[Random.Range(0, myList.Count)]);
+                lastDamageTime = Time.time;
+            }
+
         }
 
     }

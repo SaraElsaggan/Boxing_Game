@@ -3,12 +3,15 @@ using TMPro;
 using Firebase;
 using Firebase.Database;
 using Firebase.Extensions;
+using System;
 
 public class FirebaseDataDisplay : MonoBehaviour
 {
     public TMP_Text dataText;
     public float mass = 60f;
     private DatabaseReference dbRef;
+    private float _force = 60f;  // Default fallback
+    public float Force => _force; // Public getter
 
     void Start()
     {
@@ -35,6 +38,7 @@ public class FirebaseDataDisplay : MonoBehaviour
         string pulse = snapshot.Child("Pulse").Value?.ToString() ?? "N/A";
         string speedRaw = snapshot.Child("Speed").Value?.ToString() ?? "0";
         string temp = snapshot.Child("TEMP").Value?.ToString() ?? "N/A";
+        float.TryParse(snapshot.Child("Force").Value?.ToString(), out _force);
 
         // Parse speed and calculate force
         float speedValue = 0f;
@@ -47,7 +51,7 @@ public class FirebaseDataDisplay : MonoBehaviour
         dataText.text =
             $"Pulse: {pulse}\n" +
             $"Speed: {speedValue:F2} m/s²\n" +
-            $"Force: {force:F2} N\n" +
+            $"Force: {Force:F2} N\n" +
             $"Temperature: {temp}";
     }
 
