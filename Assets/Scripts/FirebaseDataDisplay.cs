@@ -23,7 +23,7 @@ public class FirebaseDataDisplay : MonoBehaviour
                 DataSnapshot snapshot = task.Result;
 
                 // Read values safely with null checks
-                bool detectedForce = bool.Parse(snapshot.Child("Detected Force").Value.ToString());
+                bool detectedForce = bool.Parse(snapshot.Child("Detected_Force").Value.ToString());
                 string humidity = snapshot.Child("HUMIDITY").Value?.ToString() ?? "N/A";
                 string temp = snapshot.Child("TEMP").Value?.ToString() ?? "N/A";
 
