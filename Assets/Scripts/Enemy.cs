@@ -12,12 +12,18 @@ public class Enemy : MonoBehaviour
     public float minWidth = 0f;       // Prevent it from going negative
     private List<string> myList = new List<string> { "StomchHitTrigger", "RibHitTrigger", "HeadHitTrigger" };
     public int enemyLevel;
-    public AudioSource audioSource; // Reference to the AudioSource component
+    public AudioClip punch; // Reference to the AudioSource component
+    public AudioClip win; // Reference to the AudioSource component
+    public AudioClip start; // Reference to the AudioSource component
+    private AudioSource audioSource;
+
 
 
     void Start()
     {
         EnamyAnimation = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(start);
     }
 
     // Update is called once per frame
@@ -38,12 +44,12 @@ public class Enemy : MonoBehaviour
         if (newWidth > 0)
         {
             EnamyAnimation.SetTrigger(triggerName);
-            audioSource.Play();
-
+            audioSource.PlayOneShot(punch);
         }
         else
         {
             EnamyAnimation.SetTrigger("DeathTrigger");
+            audioSource.PlayOneShot(win);
             this.enabled = false;
 
 
