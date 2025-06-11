@@ -23,7 +23,10 @@ public class Enemy : MonoBehaviour
     {
         EnamyAnimation = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        audioSource.PlayOneShot(start);
+        // audioSource.PlayOneShot(start);
+        audioSource.clip = start;      // Set the start clip
+        audioSource.loop = true;       // Enable looping
+        audioSource.Play();            // Play normally (not OneShot)
     }
 
     // Update is called once per frame
