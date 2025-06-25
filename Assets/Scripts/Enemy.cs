@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
             if (Time.time - lastDamageTime >= damageCooldown)
             {
                 Debug.Log("something");
-                TakeDamge(Random.Range(5f, 20f), myList[Random.Range(0, myList.Count)]);
+                TakeDamge(firebase.Force, myList[Random.Range(0, myList.Count)]);
                 lastDamageTime = Time.time;
             }
 
