@@ -44,9 +44,11 @@ Built using **Unity** and real-time sensor integration, this project allows user
 
 ### 🧠 Training Mode
 
-<div align="center">
-  <img src="https://github.com/YOUR_USERNAME/YOUR_REPO/blob/main/Demo/training.gif?raw=true" width="640">
-</div>
+
+
+https://github.com/user-attachments/assets/5a4049e1-e74f-429f-8189-dba1df2cfe93
+
+
 
 ---
 
