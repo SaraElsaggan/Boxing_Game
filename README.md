@@ -1,7 +1,7 @@
-# 🥊 Virtual Reality Boxing Training & Competition Game
+# 🥊 3D Boxing Training & Competition Game
 
-**Immersive VR boxing simulation** designed to blend physical engagement with entertaining gameplay.  
-Built using **Unity** and real-time sensor integration, this project allows users to learn proper boxing techniques, train their fitness, and challenge animated opponents — all in a fully interactive virtual arena.
+**Immersive 3D boxing simulation** designed to blend physical engagement with entertaining gameplay.  
+Built using **Unity** and real-time sensor integration, this project allows users to learn proper boxing techniques, train their fitness, and challenge animated opponents — all in a fully interactive 3D environment.
 
 ---
 
@@ -46,16 +46,15 @@ Built using **Unity** and real-time sensor integration, this project allows user
 
 ---
 
-
 ## 🧠 Technologies Used
 
-| Domain             | Tech Stack                           |
-|--------------------|--------------------------------------|
-| VR Development     | Unity, C#, XR Interaction Toolkit    |
-| 3D Modeling/Avatar | Blender, Mixamo                      |
-| Sensor Integration | Smart Boxing Gloves (force, HR, temp)|
-| Audio System       | Unity Audio + Rhythmic Music Engine  |
-| UI & UX            | Unity UI Toolkit                     |
+| Domain              | Tech Stack                           |
+|---------------------|--------------------------------------|
+| 3D Game Development | Unity, C#                            |
+| 3D Modeling/Avatar  | Blender, Mixamo                      |
+| Sensor Integration  | Smart Boxing Gloves (force, HR, temp)|
+| Audio System        | Unity Audio + Rhythmic Music Engine  |
+| UI & UX             | Unity UI Toolkit                     |
 
 ---
 
@@ -64,14 +63,14 @@ Built using **Unity** and real-time sensor integration, this project allows user
 - **Hager Samir**
 - **Sara Elsaggan**
 
-**Supervised by:**
-- Prof. Dr.Sofy  
-  _Department of Systems and biomedical engineering, Cairo University.
+**Supervised by:**  
+Prof. Dr. Sofy  
+_Department of Systems and Biomedical Engineering, Cairo University_
 
 ---
 
 ## 🎯 Game Goal
 
-The ultimate goal is to combine physical boxing training with gamified motivation, helping users improve their technique, endurance, and overall performance — while having fun in a fully immersive VR environment.
+The ultimate goal is to combine physical boxing training with gamified motivation, helping users improve their technique, endurance, and overall performance — while having fun in a fully interactive 3D environment.
 
 ---
