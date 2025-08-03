@@ -5,6 +5,18 @@ Built using **Unity** and real-time sensor integration, this project allows user
 
 ---
 
+## 📚 Table of Contents
+
+- [🎯 Features](#-features)
+- [📽️ Demo](#-demo)
+  - [🧠 Training Mode](#-training-mode)
+  - [🥊 Fight Mode – AI Challenge](#-fight-mode--ai-challenge)
+- [🧠 Technologies Used](#-technologies-used)
+- [👥 Authors](#-authors)
+- [🎯 Game Goal](#-game-goal)
+
+
+
 ## 🎯 Features
 
 ### 🧪 Training Mode
