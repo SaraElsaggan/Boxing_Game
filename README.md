@@ -52,9 +52,7 @@ Built using **Unity** and real-time sensor integration, this project allows user
 
 ### 🥊 Fight Mode – AI Challenge
 
-<div align="center">
-  <img src="https://github.com/YOUR_USERNAME/YOUR_REPO/blob/main/Demo/fight.gif?raw=true" width="640">
-</div>
+https://github.com/user-attachments/assets/e70beb86-8a26-4d36-a8ec-536b32225c34
 
 ---
 
